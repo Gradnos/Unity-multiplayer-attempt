@@ -101,8 +101,9 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
-    async void FixedUpdate()
+    void FixedUpdate()
     {
+
         if (isGrounded && !OnSlope())
         {
         myRigidBody.velocity = new Vector3 (moveDistance.x, myRigidBody.velocity.y, moveDistance.z);

@@ -6,7 +6,9 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
 
+
     public float mouseSensitivity = 100f;
+    [SerializeField] GameObject cameras;
 
     public Transform playerBody;
     public Transform orientation;
@@ -50,7 +52,7 @@ public class MouseLook : MonoBehaviour
 
         if (!isLocalPlayer)
         {
-            gameObject.SetActive(false);
+            cameras.SetActive(false);
         }
     }
 }
