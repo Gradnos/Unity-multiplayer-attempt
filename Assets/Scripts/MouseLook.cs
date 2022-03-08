@@ -9,10 +9,13 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
 
     public Transform playerBody;
+    public Transform orientation;
 
     float xRotation = 0f;
+    float yRotation = 0f;
 
     bool isLocalPlayer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +34,17 @@ public class MouseLook : MonoBehaviour
     {
         if (isLocalPlayer)
         {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        yRotation += mouseX;
 
         xRotation -= mouseY; 
         xRotation = Mathf.Clamp(xRotation, -90, 90);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-        playerBody.Rotate(Vector3.up * mouseX);
+
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        orientation.Rotate(Vector3.up * mouseX);
  
         }
 
