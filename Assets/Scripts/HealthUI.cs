@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using TMPro;
 
 public class HealthUI : NetworkBehaviour
 {
     [SerializeField] LivingEntity player;
     [SerializeField] Image healthImage;
+    [SerializeField] TextMeshProUGUI healthText;
 
 
     void Update()
@@ -29,5 +31,6 @@ public class HealthUI : NetworkBehaviour
     void ChangeHealthBar(float currentHealth, float maxHealth, float damage)
     {
         healthImage.fillAmount = currentHealth / maxHealth;
+        healthText.text = currentHealth.ToString() + "<color=#74E87A> | " + maxHealth.ToString();
     }
 }
