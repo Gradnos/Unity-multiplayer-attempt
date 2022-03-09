@@ -24,6 +24,8 @@ public class MyNetworkManager : NetworkManager
         Debug.Log("Connected to Server");
     }
 
+
+
     public override void OnClientDisconnect(NetworkConnection conn)
     {
         base.OnClientDisconnect();

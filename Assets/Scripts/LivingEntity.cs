@@ -5,12 +5,14 @@ using Mirror;
 
 
 public class LivingEntity : NetworkBehaviour, IDamagable
-{
+{   
     public float startingHealth;
     protected float health;
     protected bool dead;
 
     public event System.Action OnDeath;
+    public event System.Action<float, float, float> OnHealthChanged;
+
 
     protected virtual void Start()
     {
@@ -25,6 +27,11 @@ public class LivingEntity : NetworkBehaviour, IDamagable
     public virtual void TakeDamage(float damage)
     {
         health -= damage;
+
+        if(OnHealthChanged != null)
+        {
+            OnHealthChanged(health, startingHealth, damage);
+        }
 
         if (health <= 0 && !dead)
         {

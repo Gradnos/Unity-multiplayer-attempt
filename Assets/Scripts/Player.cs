@@ -13,6 +13,7 @@ public class Player : LivingEntity
         base.Start();
         if(isLocalPlayer)
         {
+        transform.tag = "LocalPlayer";
         AskToHidePlayerParts();
         DrawOnTopClient(drawOnTopObjects);
         }
@@ -21,7 +22,6 @@ public class Player : LivingEntity
     // Update is called once per frame
     void Update()
     {
-        
     }
 
 
@@ -46,7 +46,6 @@ public class Player : LivingEntity
             }
         }  
     }
-
 
     void DrawOnTopClient(Transform objects)
     {
