@@ -9,6 +9,9 @@ public class MouseLook : MonoBehaviour
 
     public float mouseSensitivity = 100f;
     [SerializeField] GameObject cameras;
+    [SerializeField] Camera mainCam;
+    public static Camera PlayerMainCamera;
+
 
     public Transform playerBody;
     public Transform orientation;
@@ -28,8 +31,10 @@ public class MouseLook : MonoBehaviour
 
     public void setLocalPlayer(bool _isLocalPlayer)
     {
-        isLocalPlayer = _isLocalPlayer;
+        isLocalPlayer = _isLocalPlayer; 
     }
+
+    
 
     // Update is called once per frame
     void Update()

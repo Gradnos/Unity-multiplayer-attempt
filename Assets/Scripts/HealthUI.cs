@@ -4,11 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 using TMPro;
+using DG.Tweening;
 
 public class HealthUI : NetworkBehaviour
 {
     [SerializeField] LivingEntity player;
     [SerializeField] Image healthImage;
+    [SerializeField] Image underHealth;
     [SerializeField] TextMeshProUGUI healthText;
 
 
@@ -30,7 +32,8 @@ public class HealthUI : NetworkBehaviour
 
     void ChangeHealthBar(float currentHealth, float maxHealth, float damage)
     {
-        healthImage.fillAmount = currentHealth / maxHealth;
-        healthText.text = currentHealth.ToString() + "<color=#74E87A> | " + maxHealth.ToString();
+        healthImage.fillAmount = currentHealth/maxHealth;
+        healthText.text = currentHealth.ToString() + "<color=#82ED8D> | " + maxHealth.ToString();
+        underHealth.DOFillAmount(currentHealth/maxHealth, 4f).SetEase(Ease.OutExpo);
     }
 }

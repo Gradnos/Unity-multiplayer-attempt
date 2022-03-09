@@ -56,7 +56,6 @@ public class PlayerMovement : NetworkBehaviour
 
     public void Update()
     {
-
         headCamera.setLocalPlayer(isLocalPlayer);
         if(isLocalPlayer)
         {  
@@ -85,11 +84,11 @@ public class PlayerMovement : NetworkBehaviour
                        
              if (!isGrounded && myRigidBody.velocity.y < 1f  && myRigidBody.velocity.y > 0f)
             {
-                addedGravity = apexAddedGravityValue;
+               // addedGravity = apexAddedGravityValue;
             }
             else if (!isGrounded && myRigidBody.velocity.y < 0)
             {
-               addedGravity = addedGravityOnFallValue;
+              // addedGravity = addedGravityOnFallValue;
             }
             else
             {
@@ -108,7 +107,7 @@ public class PlayerMovement : NetworkBehaviour
         {
         myRigidBody.velocity = new Vector3 (moveDistance.x, myRigidBody.velocity.y, moveDistance.z);
         }
-        else if(isGrounded && OnSlope())
+        else if(isGrounded && OnSlope()  && !Input.GetButton("Jump"))
         {
         myRigidBody.velocity = slopeHitMoveDistance;
         }

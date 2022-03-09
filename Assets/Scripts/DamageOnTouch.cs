@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageOnTouch : MonoBehaviour
 {
-    float damage = 5;
+    float damage = 40;
     void Start()
     {
         
