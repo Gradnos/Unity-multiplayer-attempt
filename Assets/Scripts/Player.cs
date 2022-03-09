@@ -6,13 +6,15 @@ using Mirror;
 public class Player : LivingEntity
 {
     [SerializeField] Transform playerPartsToHide;
+    [SerializeField] Transform drawOnTopObjects;
 
     protected override void Start()
     {
         base.Start();
         if(isLocalPlayer)
         {
-        AskHidePlayerParts();
+        AskToHidePlayerParts();
+        DrawOnTopClient(drawOnTopObjects);
         }
     }
 
@@ -24,9 +26,8 @@ public class Player : LivingEntity
 
 
     [Command]
-    void AskHidePlayerParts()
+    void AskToHidePlayerParts()
     {
-        print("asked");
         HidePlayerParts();
     }
 
@@ -45,4 +46,25 @@ public class Player : LivingEntity
             }
         }  
     }
+
+
+    void DrawOnTopClient(Transform objects)
+    {
+        GameObject currentObject;
+        int childCount = objects.childCount;
+        for(int i = 0; i < childCount; i++)
+        {
+            currentObject = objects.GetChild(i).gameObject;
+            if (currentObject != null)
+            {
+                currentObject.layer = LayerMask.NameToLayer("OnTop");
+                if (currentObject.transform.childCount > 0 )
+                {
+                   DrawOnTopClient(currentObject.transform);
+                }
+            }
+        }  
+    }
+
+    
 }
