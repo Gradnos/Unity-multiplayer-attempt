@@ -48,7 +48,7 @@ public class LivingEntity : NetworkBehaviour, IDamagable
         {
             OnDeath();
         }
-        GameObject.Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 
 }

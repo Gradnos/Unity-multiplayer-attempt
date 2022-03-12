@@ -585,6 +585,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   porjectileSpawn: {fileID: 900578209606603356}
+  damage: 5
+  msBetweenShots: 100
 --- !u!1 &4511682934569405604
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a18ef81f42540a4ea0d1182dcf3bd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   mainCam: {fileID: 6846163790916456692}
 --- !u!1 &6846163790916456694
 GameObject:
