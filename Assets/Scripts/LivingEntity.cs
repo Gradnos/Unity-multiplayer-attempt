@@ -41,6 +41,7 @@ public class LivingEntity : NetworkBehaviour, IDamagable
 
 
     [ContextMenu("Self Destruct")]
+    [Command]
     protected void Die()
     {
         dead = true;

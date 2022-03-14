@@ -38,8 +38,17 @@ public class GunController : NetworkBehaviour
         {
             if(Input.GetMouseButton(0))
             {
+                Vector3 hitpoint;
                 //print("shoot");
-                AskShoot(hit.transform,currentGun.transform.position,hit.point);
+                if(hit.transform == null)
+                {
+                    hitpoint = mainCam.transform.position + mainCam.transform.forward * 100;
+                }
+                else
+                {
+                    hitpoint = hit.point;
+                }
+                AskShoot(hit.transform,currentGun.porjectileSpawn.position ,hitpoint);
             }
         }
         

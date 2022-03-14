@@ -7,7 +7,7 @@ public class MouseLook : MonoBehaviour
 {
 
 
-    public float mouseSensitivity = 50f;
+    public float mouseSensitivity = 10f;
     [SerializeField] GameObject cameras;
     [SerializeField] Camera mainCam;
     public static Camera PlayerMainCamera;
