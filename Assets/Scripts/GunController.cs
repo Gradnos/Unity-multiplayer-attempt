@@ -39,31 +39,34 @@ public class GunController : NetworkBehaviour
             if(Input.GetMouseButton(0))
             {
                 Vector3 hitpoint;
+                Vector3 normal;
                 //print("shoot");
                 if(hit.transform == null)
                 {
                     hitpoint = mainCam.transform.position + mainCam.transform.forward * 100;
+                    normal = Vector3.zero;
                 }
                 else
                 {
                     hitpoint = hit.point;
+                    normal = hit.normal;
                 }
-                AskShoot(hit.transform,currentGun.porjectileSpawn.position ,hitpoint);
+                AskShoot(hit.transform,currentGun.porjectileSpawn.position ,hitpoint, normal);
             }
         }
         
     }
     
     [Command]
-    void AskShoot(Transform hitTransform, Vector3 shotStartPoint, Vector3 hitPoint)
+    void AskShoot(Transform hitTransform, Vector3 shotStartPoint, Vector3 hitPoint, Vector3 normal)
     {
-        Shoot(hitTransform,shotStartPoint,hitPoint);
+        Shoot(hitTransform,shotStartPoint,hitPoint, normal);
     }
     
     [ClientRpc]
-    void Shoot(Transform hitTransform, Vector3 shotStartPoint, Vector3 hitPoint)
+    void Shoot(Transform hitTransform, Vector3 shotStartPoint, Vector3 hitPoint, Vector3 normal)
     {
-        currentGun.Shoot(hitTransform,shotStartPoint,hitPoint);
+        currentGun.Shoot(hitTransform,shotStartPoint,hitPoint, normal);
     }
 }
 

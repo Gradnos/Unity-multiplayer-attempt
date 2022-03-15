@@ -7,8 +7,8 @@ using UnityEngine.VFX;
 public class Gun :  MonoBehaviour
 {
     [SerializeField] public Transform porjectileSpawn;
-    [SerializeField] LineRenderer lineRenderer;
     [SerializeField] VisualEffect muzzleFlash; 
+    [SerializeField] VisualEffect bulletImpact;
     
     
     
@@ -16,14 +16,17 @@ public class Gun :  MonoBehaviour
     public float msBetweenShots;
 
 
+    GameObject mainCam;
+
     float nextShotTime;
 
     Vector3 point;
     List <Color> cols = new List<Color>();
     void Start()
     {
-    cols.Add(Color.red);
-    cols.Add(Color.red);
+        cols.Add(Color.red);
+        cols.Add(Color.red);
+        mainCam = GameObject.FindGameObjectWithTag("MainCamera");
         
     }
 
@@ -44,7 +47,7 @@ public class Gun :  MonoBehaviour
     
 
 
-    public void Shoot(Transform hitTransform, Vector3 shotStartPoint, Vector3 hitPoint)
+    public void Shoot(Transform hitTransform, Vector3 shotStartPoint, Vector3 hitPoint, Vector3 normal)
     {
         
         if(Time.time > nextShotTime)
@@ -53,13 +56,22 @@ public class Gun :  MonoBehaviour
             nextShotTime = Time.time + msBetweenShots/1000f;
 
             muzzleFlash.Play();
-
+            AudioManager.Instance.playAtAudioSource("GunShot_01", mainCam.GetComponent<AudioSource>());
             if(hitTransform != null)
             {
+                print("prebop");
                 IDamagable damagableObject = hitTransform.GetComponent<IDamagable>();
                 if (damagableObject != null)
                 {   
                     damagableObject.TakeHit(damage, hitPoint, (hitPoint-shotStartPoint).normalized);
+                    
+                }
+                else
+                {
+                    print("boop");
+                    VisualEffect impact = Instantiate(bulletImpact, hitPoint, Quaternion.LookRotation(normal));
+                    impact.Play();
+                    GameObject.Destroy(impact,10f);
                 }
             }
         }
