@@ -48,18 +48,7 @@ public class AudioManager : MonoBehaviour
     public void playAtAudioSource(string name, AudioSource source)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
-        if (source.clip != s.clip)
-        {
-           source.clip = s.clip;
-        }
-        if (source.volume != s.volume * gameVolume)
-        {
-            source.volume = s.volume * gameVolume;
-        }
-
         source.PlayOneShot(s.clip, s.volume * gameVolume);
-        //source.Play(); 
-
     }
 
 

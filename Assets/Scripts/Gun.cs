@@ -52,33 +52,29 @@ public class Gun :  MonoBehaviour
         
         if(Time.time > nextShotTime)
         {
-            print("shot");
             nextShotTime = Time.time + msBetweenShots/1000f;
 
             muzzleFlash.Play();
             AudioManager.Instance.playAtAudioSource("GunShot_01", mainCam.GetComponent<AudioSource>());
             if(hitTransform != null)
             {
-                print("prebop");
                 IDamagable damagableObject = hitTransform.GetComponent<IDamagable>();
                 if (damagableObject != null)
                 {   
                     damagableObject.TakeHit(damage, hitPoint, (hitPoint-shotStartPoint).normalized);
-                    
-                }
+                    AudioManager.Instance.playAtAudioSource("GunClick_01", mainCam.GetComponent<AudioSource>());
+                }   
                 else
                 {
-                    print("boop");
                     VisualEffect impact = Instantiate(bulletImpact, hitPoint, Quaternion.LookRotation(normal));
                     impact.Play();
-                    GameObject.Destroy(impact,10f);
+                    GameObject.Destroy(impact);
                 }
             }
         }
 
          
     }
-
 
 
     IEnumerator ServerDestroyIn(GameObject destroyable, float time)

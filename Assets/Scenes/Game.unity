@@ -3426,6 +3426,9 @@ MonoBehaviour:
   - name: GunShot_01
     clip: {fileID: 8300000, guid: 40eff7ac8fa4c4642ab0247a051389b7, type: 3}
     volume: 0.24
+  - name: GunClick_01
+    clip: {fileID: 8300000, guid: aa1517e9c1318af4f824b0c724991996, type: 3}
+    volume: 1.5
 --- !u!1 &1121994408
 GameObject:
   m_ObjectHideFlags: 0
