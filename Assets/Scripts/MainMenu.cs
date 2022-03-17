@@ -13,4 +13,10 @@ public class MainMenu : MonoBehaviour
     {
         networkManager.StartHost();
     }
+
+    public void QuitGame()
+    {
+        print("quitting");
+        Application.Quit();
+    }
 }

@@ -48,7 +48,7 @@ MonoBehaviour:
   porjectileSpawn: {fileID: 900578209606603356}
   muzzleFlash: {fileID: 2697397974534928371}
   bulletImpact: {fileID: 2913604238896373741, guid: bb14003f334ec2b458dcb9ca4b29b9ca, type: 3}
-  damage: 5
+  damage: 10
   msBetweenShots: 100
 --- !u!1 &420904403338818814
 GameObject:

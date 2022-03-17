@@ -66,9 +66,11 @@ public class Gun :  MonoBehaviour
                 }   
                 else
                 {
-                    VisualEffect impact = Instantiate(bulletImpact, hitPoint, Quaternion.LookRotation(normal));
+
+                    VisualEffect impact = NetworkManager.Instantiate(bulletImpact, hitPoint, Quaternion.LookRotation(normal));
                     impact.Play();
-                    GameObject.Destroy(impact);
+                    StartCoroutine(ServerDestroyIn(impact.gameObject , 10f));
+                   // GameObject.Destroy(impact);
                 }
             }
         }
@@ -77,9 +79,13 @@ public class Gun :  MonoBehaviour
     }
 
 
+
     IEnumerator ServerDestroyIn(GameObject destroyable, float time)
     {
+
         yield return new WaitForSeconds(time);
+        print("destroy");
         Destroy(destroyable);
+        //NetworkServer.Destroy(destroyable);
     }
 }
